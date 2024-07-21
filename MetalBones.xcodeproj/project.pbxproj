@@ -29,6 +29,7 @@
 		BD3CA4C42C4D9A6B00F41D82 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		BD3CA4C62C4D9A7600F41D82 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		BD3CA4C82C4D9A7E00F41D82 /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
+		BD3CA4DD2C4DA5F100F41D82 /* Metal.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Metal.hpp; sourceTree = "<group>"; };
 		BDAEDAA02C4D998F00ECBC41 /* MetalBones */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MetalBones; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDAEDAA22C4D998F00ECBC41 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -47,9 +48,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BD3CA4DE2C4DA5F100F41D82 /* ThirdParty */ = {
+			isa = PBXGroup;
+			children = (
+				BD3CA4DD2C4DA5F100F41D82 /* Metal.hpp */,
+			);
+			path = ThirdParty;
+			sourceTree = "<group>";
+		};
 		BDAEDA212C49E32C00ECBC41 = {
 			isa = PBXGroup;
 			children = (
+				BD3CA4DE2C4DA5F100F41D82 /* ThirdParty */,
 				BDAEDAA12C4D998F00ECBC41 /* MetalBones */,
 				BDAEDA2A2C49E43100ECBC41 /* Frameworks */,
 				BDAEDA952C4D997500ECBC41 /* Products */,
@@ -215,7 +225,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = "/Users/lun/work/cpp/metal-cpp/**";
+				HEADER_SEARCH_PATHS = "";
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 14.4;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -275,7 +285,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = "/Users/lun/work/cpp/metal-cpp/**";
+				HEADER_SEARCH_PATHS = "";
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 14.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
