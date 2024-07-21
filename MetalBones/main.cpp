@@ -9,8 +9,8 @@
 #define CA_PRIVATE_IMPLEMENTATION
 #define MTL_PRIVATE_IMPLEMENTATION
 
-#include "../ThirdParty/Metal.hpp"
+#include "Metal.hpp"
 
-int main(int argc, const char * argv[]) {
+int main(int argc, const char* argv[argc + 1]) {
     return 0;
 }
