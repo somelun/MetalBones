@@ -68,13 +68,13 @@ NS::Menu* AppDelegate::createMenuBar() {
 
     NS::String* appName = NS::RunningApplication::currentApplication()->localizedName();
     NS::String* quitItemName = NS::String::string("Quit ", UTF8StringEncoding )->stringByAppendingString(appName);
-    SEL quitCallback = NS::MenuItem::registerActionCallback( "appQuit", [](void*, SEL, const NS::Object* pSender) {
+    SEL quitCallback = NS::MenuItem::registerActionCallback( "appQuit", [](void*, SEL, const NS::Object* sender) {
         auto application = NS::Application::sharedApplication();
-        application->terminate( pSender );
+        application->terminate(sender);
     });
     
-    NS::MenuItem* pAppQuitItem = appMenu->addItem(quitItemName, quitCallback, NS::String::string("q", UTF8StringEncoding));
-    pAppQuitItem->setKeyEquivalentModifierMask(NS::EventModifierFlagCommand);
+    NS::MenuItem* appQuitItem = appMenu->addItem(quitItemName, quitCallback, NS::String::string("q", UTF8StringEncoding));
+    appQuitItem->setKeyEquivalentModifierMask(NS::EventModifierFlagCommand);
     appMenuItem->setSubmenu(appMenu);
     
     mainMenu->addItem(appMenuItem);
