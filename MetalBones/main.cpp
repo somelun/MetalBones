@@ -24,6 +24,8 @@ public:
 class AppDelegate : public NS::ApplicationDelegate {
 public:
     ~AppDelegate();
+    
+    NS::Menu* createMenuBar();
 
     virtual void applicationWillFinishLaunching(NS::Notification* notification) override;
     virtual void applicationDidFinishLaunching(NS::Notification* notification) override;
@@ -57,7 +59,37 @@ AppDelegate::~AppDelegate() {
     delete viewDelegate;
 }
 
+NS::Menu* AppDelegate::createMenuBar() {
+    using NS::StringEncoding::UTF8StringEncoding;
+    
+    NS::Menu* mainMenu = NS::Menu::alloc()->init();
+    NS::MenuItem* appMenuItem = NS::MenuItem::alloc()->init();
+    NS::Menu* appMenu = NS::Menu::alloc()->init(NS::String::string("Appname", UTF8StringEncoding));
+
+    NS::String* appName = NS::RunningApplication::currentApplication()->localizedName();
+    NS::String* quitItemName = NS::String::string("Quit ", UTF8StringEncoding )->stringByAppendingString(appName);
+    SEL quitCallback = NS::MenuItem::registerActionCallback( "appQuit", [](void*, SEL, const NS::Object* pSender) {
+        auto application = NS::Application::sharedApplication();
+        application->terminate( pSender );
+    });
+    
+    NS::MenuItem* pAppQuitItem = appMenu->addItem(quitItemName, quitCallback, NS::String::string("q", UTF8StringEncoding));
+    pAppQuitItem->setKeyEquivalentModifierMask(NS::EventModifierFlagCommand);
+    appMenuItem->setSubmenu(appMenu);
+    
+    mainMenu->addItem(appMenuItem);
+    
+    appMenuItem->release();
+    appMenu->release();
+    
+    return mainMenu->autorelease();
+}
+
 void AppDelegate::applicationWillFinishLaunching(NS::Notification* notification) {
+    NS::Menu* menu = createMenuBar();
+    NS::Application* application = reinterpret_cast<NS::Application*>(notification->object());
+    application->setMainMenu(menu);
+    application->setActivationPolicy(NS::ActivationPolicy::ActivationPolicyRegular);
 }
 
 void AppDelegate::applicationDidFinishLaunching(NS::Notification* notification) {
