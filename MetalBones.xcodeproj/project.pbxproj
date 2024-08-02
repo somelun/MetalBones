@@ -7,8 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		BD3CA4C52C4D9A6B00F41D82 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD3CA4C42C4D9A6B00F41D82 /* Foundation.framework */; };
-		BD3CA4C72C4D9A7600F41D82 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD3CA4C62C4D9A7600F41D82 /* QuartzCore.framework */; };
+		BD1CAA8F2C5DA5320057D767 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD1CAA8E2C5DA5320057D767 /* AppKit.framework */; };
 		BD3CA4C92C4D9A7E00F41D82 /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD3CA4C82C4D9A7E00F41D82 /* Metal.framework */; };
 		BD3CA5092C5C2F9C00F41D82 /* Renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BD3CA5072C5C2F9C00F41D82 /* Renderer.cpp */; };
 		BD3CA50B2C5D9BC800F41D82 /* MetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD3CA50A2C5D9BC700F41D82 /* MetalKit.framework */; };
@@ -28,8 +27,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		BD3CA4C42C4D9A6B00F41D82 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		BD3CA4C62C4D9A7600F41D82 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		BD1CAA8E2C5DA5320057D767 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		BD3CA4C82C4D9A7E00F41D82 /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
 		BD3CA5072C5C2F9C00F41D82 /* Renderer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Renderer.cpp; sourceTree = "<group>"; };
 		BD3CA5082C5C2F9C00F41D82 /* Renderer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Renderer.hpp; sourceTree = "<group>"; };
@@ -43,10 +41,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BD1CAA8F2C5DA5320057D767 /* AppKit.framework in Frameworks */,
 				BD3CA50B2C5D9BC800F41D82 /* MetalKit.framework in Frameworks */,
 				BD3CA4C92C4D9A7E00F41D82 /* Metal.framework in Frameworks */,
-				BD3CA4C72C4D9A7600F41D82 /* QuartzCore.framework in Frameworks */,
-				BD3CA4C52C4D9A6B00F41D82 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,10 +62,9 @@
 		BDAEDA2A2C49E43100ECBC41 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BD1CAA8E2C5DA5320057D767 /* AppKit.framework */,
 				BD3CA50A2C5D9BC700F41D82 /* MetalKit.framework */,
 				BD3CA4C82C4D9A7E00F41D82 /* Metal.framework */,
-				BD3CA4C62C4D9A7600F41D82 /* QuartzCore.framework */,
-				BD3CA4C42C4D9A6B00F41D82 /* Foundation.framework */,
 			);
 			path = Frameworks;
 			sourceTree = "<group>";
