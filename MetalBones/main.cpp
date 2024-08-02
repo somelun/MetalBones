@@ -8,6 +8,7 @@
 #define NS_PRIVATE_IMPLEMENTATION
 #define MTL_PRIVATE_IMPLEMENTATION
 #define MTK_PRIVATE_IMPLEMENTATION
+#define CA_PRIVATE_IMPLEMENTATIO
 
 #include <AppKit/AppKit.hpp>
 #include <MetalKit/MetalKit.hpp>
@@ -18,7 +19,11 @@ class MTKViewDelegate : public MTK::ViewDelegate {
 public:
     MTKViewDelegate(MTL::Device* device);
     virtual ~MTKViewDelegate() override;
+
     virtual void drawInMTKView(MTK::View* view) override;
+
+private:
+    Renderer* renderer;
 };
 
 class AppDelegate : public NS::ApplicationDelegate {
@@ -125,11 +130,14 @@ bool AppDelegate::applicationShouldTerminateAfterLastWindowClosed(NS::Applicatio
 }
 
 MTKViewDelegate::MTKViewDelegate(MTL::Device* device)
-    : MTK::ViewDelegate() {
+    : MTK::ViewDelegate()
+    , renderer(new Renderer(device)) {
 }
 
 MTKViewDelegate::~MTKViewDelegate() {
+    delete renderer;
 }
 
 void MTKViewDelegate::drawInMTKView(MTK::View* view) {
+    renderer->draw(view);
 }

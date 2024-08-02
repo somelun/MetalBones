@@ -5,11 +5,19 @@
 //  Created by Sasha on 01/08/2024.
 //
 
-#ifndef _RENDERER_HPP_
-#define _RENDERER_HPP_
-
-#define CA_PRIVATE_IMPLEMENTATIO
+#pragma once
 
 #include <Metal/Metal.hpp>
+#include <MetalKit/MetalKit.hpp>
 
-#endif // _RENDERER_HPP_
+class Renderer {
+public:
+    Renderer(MTL::Device* device);
+    ~Renderer();
+    
+    void draw(MTK::View* view);
+    
+private:
+    MTL::Device* device;
+    MTL::CommandQueue* commandQueue;
+};

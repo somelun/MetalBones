@@ -11,6 +11,7 @@
 		BD3CA4C72C4D9A7600F41D82 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD3CA4C62C4D9A7600F41D82 /* QuartzCore.framework */; };
 		BD3CA4C92C4D9A7E00F41D82 /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD3CA4C82C4D9A7E00F41D82 /* Metal.framework */; };
 		BD3CA5092C5C2F9C00F41D82 /* Renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BD3CA5072C5C2F9C00F41D82 /* Renderer.cpp */; };
+		BD3CA50B2C5D9BC800F41D82 /* MetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD3CA50A2C5D9BC700F41D82 /* MetalKit.framework */; };
 		BDAEDAA32C4D998F00ECBC41 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BDAEDAA22C4D998F00ECBC41 /* main.cpp */; };
 /* End PBXBuildFile section */
 
@@ -32,6 +33,7 @@
 		BD3CA4C82C4D9A7E00F41D82 /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
 		BD3CA5072C5C2F9C00F41D82 /* Renderer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Renderer.cpp; sourceTree = "<group>"; };
 		BD3CA5082C5C2F9C00F41D82 /* Renderer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Renderer.hpp; sourceTree = "<group>"; };
+		BD3CA50A2C5D9BC700F41D82 /* MetalKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MetalKit.framework; path = System/Library/Frameworks/MetalKit.framework; sourceTree = SDKROOT; };
 		BDAEDAA02C4D998F00ECBC41 /* MetalBones */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MetalBones; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDAEDAA22C4D998F00ECBC41 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -41,6 +43,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BD3CA50B2C5D9BC800F41D82 /* MetalKit.framework in Frameworks */,
 				BD3CA4C92C4D9A7E00F41D82 /* Metal.framework in Frameworks */,
 				BD3CA4C72C4D9A7600F41D82 /* QuartzCore.framework in Frameworks */,
 				BD3CA4C52C4D9A6B00F41D82 /* Foundation.framework in Frameworks */,
@@ -62,6 +65,7 @@
 		BDAEDA2A2C49E43100ECBC41 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BD3CA50A2C5D9BC700F41D82 /* MetalKit.framework */,
 				BD3CA4C82C4D9A7E00F41D82 /* Metal.framework */,
 				BD3CA4C62C4D9A7600F41D82 /* QuartzCore.framework */,
 				BD3CA4C42C4D9A6B00F41D82 /* Foundation.framework */,
