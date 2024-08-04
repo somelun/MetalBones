@@ -16,11 +16,16 @@ public:
     ~Renderer();
     
     void buildShaders();
+    void buildBuffers();
     
     void draw(MTK::View* view);
     
 private:
     MTL::Device* device;
     MTL::CommandQueue* commandQueue;
+    MTL::Library* shaderLibrary;
     MTL::RenderPipelineState* renderPipelineState;
+    MTL::Buffer* argBuffer;
+    MTL::Buffer* vertexPositionsBuffer;
+    MTL::Buffer* vertexColorsBuffer;
 };

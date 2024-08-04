@@ -13,7 +13,7 @@
 #include <AppKit/AppKit.hpp>
 #include <MetalKit/MetalKit.hpp>
 
-#include "renderer.hpp"
+#include "Renderer.hpp"
 
 class MTKViewDelegate : public MTK::ViewDelegate {
 public:
