@@ -15,9 +15,12 @@ public:
     Renderer(MTL::Device* device);
     ~Renderer();
     
+    void buildShaders();
+    
     void draw(MTK::View* view);
     
 private:
     MTL::Device* device;
     MTL::CommandQueue* commandQueue;
+    MTL::RenderPipelineState* renderPipelineState;
 };

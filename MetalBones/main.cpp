@@ -13,7 +13,7 @@
 #include <AppKit/AppKit.hpp>
 #include <MetalKit/MetalKit.hpp>
 
-#include "Renderer.hpp"
+#include "renderer.hpp"
 
 class MTKViewDelegate : public MTK::ViewDelegate {
 public:
@@ -98,7 +98,10 @@ void AppDelegate::applicationWillFinishLaunching(NS::Notification* notification)
 }
 
 void AppDelegate::applicationDidFinishLaunching(NS::Notification* notification) {
-    CGRect frame = (CGRect){ {100.0, 100.0}, {512.0, 512.0} };
+    CGRect frame = (CGRect){
+        {400.0, 250.0},
+        {512.0, 512.0}
+    };
 
     window = NS::Window::alloc()->init(
         frame,
@@ -111,14 +114,13 @@ void AppDelegate::applicationDidFinishLaunching(NS::Notification* notification) 
 
     metalKitView = MTK::View::alloc()->init(frame, device);
     metalKitView->setColorPixelFormat(MTL::PixelFormat::PixelFormatBGRA8Unorm_sRGB);
-    metalKitView->setClearColor(MTL::ClearColor::Make(1.0, 0.0, 0.0, 1.0));
+    metalKitView->setClearColor(MTL::ClearColor::Make(1.0, 1.0, 0.6, 1.0));
 
     viewDelegate = new MTKViewDelegate(device);
     metalKitView->setDelegate(viewDelegate);
 
     window->setContentView(metalKitView);
-    window->setTitle(NS::String::string( "Metal Bones", NS::StringEncoding::UTF8StringEncoding));
-
+    window->setTitle(NS::String::string("Metal Bones", NS::StringEncoding::UTF8StringEncoding));
     window->makeKeyAndOrderFront(nullptr);
 
     NS::Application* Application = reinterpret_cast<NS::Application*>(notification->object());
@@ -131,7 +133,8 @@ bool AppDelegate::applicationShouldTerminateAfterLastWindowClosed(NS::Applicatio
 
 MTKViewDelegate::MTKViewDelegate(MTL::Device* device)
     : MTK::ViewDelegate()
-    , renderer(new Renderer(device)) {
+    , renderer(new Renderer(device))
+{
 }
 
 MTKViewDelegate::~MTKViewDelegate() {

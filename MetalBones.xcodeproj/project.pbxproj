@@ -8,8 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		BD1CAA8F2C5DA5320057D767 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD1CAA8E2C5DA5320057D767 /* AppKit.framework */; };
+		BD1CAA922C5ED23B0057D767 /* triangle.metal in Sources */ = {isa = PBXBuildFile; fileRef = BD1CAA912C5ED23B0057D767 /* triangle.metal */; };
 		BD3CA4C92C4D9A7E00F41D82 /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD3CA4C82C4D9A7E00F41D82 /* Metal.framework */; };
-		BD3CA5092C5C2F9C00F41D82 /* Renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BD3CA5072C5C2F9C00F41D82 /* Renderer.cpp */; };
+		BD3CA5092C5C2F9C00F41D82 /* renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BD3CA5072C5C2F9C00F41D82 /* renderer.cpp */; };
 		BD3CA50B2C5D9BC800F41D82 /* MetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD3CA50A2C5D9BC700F41D82 /* MetalKit.framework */; };
 		BDAEDAA32C4D998F00ECBC41 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BDAEDAA22C4D998F00ECBC41 /* main.cpp */; };
 /* End PBXBuildFile section */
@@ -28,9 +29,10 @@
 
 /* Begin PBXFileReference section */
 		BD1CAA8E2C5DA5320057D767 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		BD1CAA912C5ED23B0057D767 /* triangle.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = triangle.metal; sourceTree = "<group>"; };
 		BD3CA4C82C4D9A7E00F41D82 /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
-		BD3CA5072C5C2F9C00F41D82 /* Renderer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Renderer.cpp; sourceTree = "<group>"; };
-		BD3CA5082C5C2F9C00F41D82 /* Renderer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Renderer.hpp; sourceTree = "<group>"; };
+		BD3CA5072C5C2F9C00F41D82 /* renderer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = renderer.cpp; sourceTree = "<group>"; };
+		BD3CA5082C5C2F9C00F41D82 /* renderer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = renderer.hpp; sourceTree = "<group>"; };
 		BD3CA50A2C5D9BC700F41D82 /* MetalKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MetalKit.framework; path = System/Library/Frameworks/MetalKit.framework; sourceTree = SDKROOT; };
 		BDAEDAA02C4D998F00ECBC41 /* MetalBones */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MetalBones; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDAEDAA22C4D998F00ECBC41 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
@@ -50,6 +52,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BD1CAA902C5ED2180057D767 /* shaders */ = {
+			isa = PBXGroup;
+			children = (
+				BD1CAA912C5ED23B0057D767 /* triangle.metal */,
+			);
+			path = shaders;
+			sourceTree = "<group>";
+		};
 		BDAEDA212C49E32C00ECBC41 = {
 			isa = PBXGroup;
 			children = (
@@ -80,9 +90,10 @@
 		BDAEDAA12C4D998F00ECBC41 /* MetalBones */ = {
 			isa = PBXGroup;
 			children = (
+				BD1CAA902C5ED2180057D767 /* shaders */,
 				BDAEDAA22C4D998F00ECBC41 /* main.cpp */,
-				BD3CA5072C5C2F9C00F41D82 /* Renderer.cpp */,
-				BD3CA5082C5C2F9C00F41D82 /* Renderer.hpp */,
+				BD3CA5072C5C2F9C00F41D82 /* renderer.cpp */,
+				BD3CA5082C5C2F9C00F41D82 /* renderer.hpp */,
 			);
 			path = MetalBones;
 			sourceTree = "<group>";
@@ -144,7 +155,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BD3CA5092C5C2F9C00F41D82 /* Renderer.cpp in Sources */,
+				BD3CA5092C5C2F9C00F41D82 /* renderer.cpp in Sources */,
+				BD1CAA922C5ED23B0057D767 /* triangle.metal in Sources */,
 				BDAEDAA32C4D998F00ECBC41 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
