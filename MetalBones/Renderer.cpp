@@ -7,8 +7,6 @@
 
 #include "Renderer.hpp"
 
-#include <fstream>
-#include <sstream>
 #include <simd/simd.h>
 
 Renderer::Renderer(MTL::Device* device) 
@@ -32,16 +30,8 @@ Renderer::~Renderer() {
 void Renderer::buildShaders() {
     using NS::StringEncoding::UTF8StringEncoding;
     
-    std::ifstream file;
-    file.open("shaders/general.metal");
-    std::stringstream reader;
-    reader << file.rdbuf();
-    std::string rawString = reader.str();
-    NS::String* shaderSrc = NS::String::string(rawString.c_str(), UTF8StringEncoding);
-    
     NS::Error* error = nullptr;
-    MTL::CompileOptions* options = nullptr;
-    shaderLibrary = device->newLibrary(shaderSrc, options, &error);
+    shaderLibrary = device->newDefaultLibrary();
     if (!shaderLibrary) {
         __builtin_printf("%s", error->localizedDescription()->utf8String());
         assert(false);
