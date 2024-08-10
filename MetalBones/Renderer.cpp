@@ -18,6 +18,7 @@ Renderer::Renderer(MTL::Device* device)
 }
 
 Renderer::~Renderer() {
+    indexBuffer->release();
     argBuffer->release();
     vertexPositionsBuffer->release();
     vertexColorsBuffer->release();
@@ -57,18 +58,25 @@ void Renderer::buildShaders() {
 }
 
 void Renderer::buildBuffers() {
-    constexpr size_t numVertices = 3;
+    constexpr size_t numVertices = 4;
 
     simd::float3 positions[numVertices] = {
+        {-0.8f, -0.8f, 0.0f},
+        { 0.8f, -0.8f, 0.0f},
+        { 0.8f,  0.8f, 0.0f},
         {-0.8f,  0.8f, 0.0f},
-        { 0.0f, -0.8f, 0.0f},
-        { 0.8f,  0.8f, 0.0f}
     };
 
     simd::float3 colors[numVertices] = {
         {1.0f, 0.3f, 0.2f},
         {0.8f, 1.0f, 0.0f},
-        {0.8f, 0.0f, 1.0f}
+        {0.8f, 0.0f, 1.0f},
+        {0.8f, 1.0f, 0.4f}
+    };
+    
+    uint16_t indicies[] = {
+        0, 1, 2,
+        2, 3, 0
     };
     
     const size_t positionsDataSize = numVertices * sizeof(simd::float3);
@@ -76,12 +84,16 @@ void Renderer::buildBuffers() {
 
     vertexPositionsBuffer = device->newBuffer(positionsDataSize, MTL::ResourceStorageModeManaged);
     vertexColorsBuffer = device->newBuffer(colorDataSize, MTL::ResourceStorageModeManaged);
+    
+    indexBuffer = device->newBuffer(sizeof(indicies), MTL::ResourceStorageModeManaged);
 
     memcpy(vertexPositionsBuffer->contents(), positions, positionsDataSize);
     memcpy(vertexColorsBuffer->contents(), colors, colorDataSize);
+    memcpy(indexBuffer->contents(), indicies, sizeof(indicies));
 
     vertexPositionsBuffer->didModifyRange(NS::Range::Make(0, vertexPositionsBuffer->length()));
     vertexColorsBuffer->didModifyRange(NS::Range::Make(0, vertexColorsBuffer->length()));
+    indexBuffer->didModifyRange(NS::Range::Make(0, indexBuffer->length()));
 
     using NS::StringEncoding::UTF8StringEncoding;
     assert(shaderLibrary);
@@ -113,10 +125,13 @@ void Renderer::draw(MTK::View* view) {
     encoder->setVertexBuffer(argBuffer, 0, 0);
     encoder->useResource(vertexPositionsBuffer, MTL::ResourceUsageRead);
     encoder->useResource(vertexColorsBuffer, MTL::ResourceUsageRead);
-    encoder->drawPrimitives(
+    
+    encoder->drawIndexedPrimitives(
         MTL::PrimitiveType::PrimitiveTypeTriangle,
-        NS::UInteger(0),
-        NS::UInteger(3)
+        6, MTL::IndexType::IndexTypeUInt16,
+        indexBuffer,
+        0,
+        1
     );
     
     encoder->endEncoding();

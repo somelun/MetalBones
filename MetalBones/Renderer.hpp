@@ -28,4 +28,6 @@ private:
     MTL::Buffer* argBuffer;
     MTL::Buffer* vertexPositionsBuffer;
     MTL::Buffer* vertexColorsBuffer;
+    
+    MTL::Buffer* indexBuffer;
 };

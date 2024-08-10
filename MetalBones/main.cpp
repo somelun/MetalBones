@@ -20,6 +20,7 @@ public:
     MTKViewDelegate(MTL::Device* device);
     virtual ~MTKViewDelegate() override;
 
+    // TODO: called 60 times per second internally, maybe switch to manual loop?
     virtual void drawInMTKView(MTK::View* view) override;
 
 private:
