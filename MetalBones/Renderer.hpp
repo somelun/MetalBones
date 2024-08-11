@@ -24,10 +24,8 @@ private:
     MTL::Device* device;
     MTL::CommandQueue* commandQueue;
     MTL::Library* shaderLibrary;
-    MTL::RenderPipelineState* renderPipelineState;
-    MTL::Buffer* argBuffer;
-    MTL::Buffer* vertexPositionsBuffer;
-    MTL::Buffer* vertexColorsBuffer;
+    MTL::RenderPipelineState* renderPipelineState;    
     
+    MTL::Buffer* vertexBuffer;
     MTL::Buffer* indexBuffer;
 };

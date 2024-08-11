@@ -111,7 +111,7 @@ void AppDelegate::applicationDidFinishLaunching(NS::Notification* notification) 
         false
     );
 
-    device = MTL::CreateSystemDefaultDevice();
+    device = MTL::CreateSystemDefaultDevice();    
 
     metalKitView = MTK::View::alloc()->init(frame, device);
     metalKitView->setColorPixelFormat(MTL::PixelFormat::PixelFormatBGRA8Unorm_sRGB);
