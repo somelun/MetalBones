@@ -14,12 +14,14 @@ Renderer::Renderer(MTL::Device* device)
 {
     commandQueue = device->newCommandQueue();
     buildShaders();
+    buildDepthStencilStates();
     buildBuffers();
 }
 
 Renderer::~Renderer() {
     indexBuffer->release();
     vertexBuffer->release();
+    depthStencilState->release();
     renderPipelineState->release();
     shaderLibrary->release();
     commandQueue->release();
@@ -43,6 +45,7 @@ void Renderer::buildShaders() {
     pipelineDescriptor->setVertexFunction(vertexFn);
     pipelineDescriptor->setFragmentFunction(fragmentFn);
     pipelineDescriptor->colorAttachments()->object(0)->setPixelFormat(MTL::PixelFormat::PixelFormatBGRA8Unorm_sRGB);
+//    pipelineDescriptor->setDepthAttachmentPixelFormat(MTL::PixelFormat::PixelFormatDepth16Unorm);
     
     MTL::VertexDescriptor* vertexDescriptor = MTL::VertexDescriptor::alloc()->init();
     MTL::VertexAttributeDescriptorArray* attributes = vertexDescriptor->attributes();
@@ -73,31 +76,78 @@ void Renderer::buildShaders() {
     pipelineDescriptor->release();
 }
 
+void Renderer::buildDepthStencilStates() {
+    MTL::DepthStencilDescriptor* depthStencilDescriptor = MTL::DepthStencilDescriptor::alloc()->init();
+    depthStencilDescriptor->setDepthCompareFunction(MTL::CompareFunction::CompareFunctionLess);
+    depthStencilDescriptor->setDepthWriteEnabled(true);
+
+    depthStencilState = device->newDepthStencilState(depthStencilDescriptor);
+
+    depthStencilDescriptor->release();
+}
+
 void Renderer::buildBuffers() {
-    constexpr size_t numVertices = 4;
+    constexpr size_t numVertices = 24;
     
     struct Vertex {
         simd::float3 position;
         simd::float3 color;
     };
     
+    const float s = 0.5f;
+    const simd::float3 Red      = {1.0f, 0.0f, 0.0f};
+    const simd::float3 Green    = {0.0f, 1.0f, 0.0f};
+    const simd::float3 Blue     = {0.0f, 0.0f, 1.0f};
+    const simd::float3 Orange   = {1.0f, 0.4f, 0.0f};
+    const simd::float3 Purple   = {1.0f, 0.0f, 1.0f};
+    const simd::float3 Cyan     = {0.0f, 1.0f, 1.0f};
+    
     Vertex vertices[numVertices] = {
-        {{-0.8f, -0.8f, 0.0f}, {1.0f, 0.3f, 0.2f}},
-        {{ 0.8f, -0.8f, 0.0f}, {0.8f, 1.0f, 0.0f}},
-        {{ 0.8f,  0.8f, 0.0f}, {0.8f, 0.0f, 1.0f}},
-        {{-0.8f,  0.8f, 0.0f}, {0.8f, 1.0f, 0.4f}},
+        {{ -s, -s, +s }, Red},
+        {{ +s, -s, +s }, Red},
+        {{ +s, +s, +s }, Red},
+        {{ -s, +s, +s }, Red},
+
+        {{ +s, -s, +s }, Green},
+        {{ +s, -s, -s }, Green},
+        {{ +s, +s, -s }, Green},
+        {{ +s, +s, +s }, Green},
+
+        {{ +s, -s, -s }, Blue},
+        {{ -s, -s, -s }, Blue},
+        {{ -s, +s, -s }, Blue},
+        {{ +s, +s, -s }, Blue},
+
+        {{ -s, -s, -s }, Orange},
+        {{ -s, -s, +s }, Orange},
+        {{ -s, +s, +s }, Orange},
+        {{ -s, +s, -s }, Orange},
+
+        {{ -s, +s, +s }, Purple},
+        {{ +s, +s, +s }, Purple},
+        {{ +s, +s, -s }, Purple},
+        {{ -s, +s, -s }, Purple},
+
+        {{ -s, -s, -s }, Cyan},
+        {{ +s, -s, -s }, Cyan},
+        {{ +s, -s, +s }, Cyan},
+        {{ -s, -s, +s }, Cyan},
     };
     
-    uint16_t indicies[] = {
-        0, 1, 2,
-        2, 3, 0
+    uint16_t indices[] = {
+        0,  1,  2,  2,  3,  0, /* front */
+        4,  5,  6,  6,  7,  4, /* right */
+        8,  9, 10, 10, 11,  8, /* back */
+       12, 13, 14, 14, 15, 12, /* left */
+       16, 17, 18, 18, 19, 16, /* top */
+       20, 21, 22, 22, 23, 20, /* bottom */
     };
     
     vertexBuffer = device->newBuffer(numVertices * sizeof(Vertex), MTL::ResourceStorageModeManaged);
-    indexBuffer = device->newBuffer(sizeof(indicies), MTL::ResourceStorageModeManaged);
+    indexBuffer = device->newBuffer(sizeof(indices), MTL::ResourceStorageModeManaged);
 
     memcpy(vertexBuffer->contents(), vertices, numVertices * sizeof(Vertex));
-    memcpy(indexBuffer->contents(), indicies, sizeof(indicies));
+    memcpy(indexBuffer->contents(), indices, sizeof(indices));
 
     vertexBuffer->didModifyRange(NS::Range::Make(0, vertexBuffer->length()));
     indexBuffer->didModifyRange(NS::Range::Make(0, indexBuffer->length()));

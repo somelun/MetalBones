@@ -16,6 +16,7 @@ public:
     ~Renderer();
     
     void buildShaders();
+    void buildDepthStencilStates();
     void buildBuffers();
     
     void draw(MTK::View* view);
@@ -24,7 +25,8 @@ private:
     MTL::Device* device;
     MTL::CommandQueue* commandQueue;
     MTL::Library* shaderLibrary;
-    MTL::RenderPipelineState* renderPipelineState;    
+    MTL::RenderPipelineState* renderPipelineState;
+    MTL::DepthStencilState* depthStencilState;
     
     MTL::Buffer* vertexBuffer;
     MTL::Buffer* indexBuffer;
