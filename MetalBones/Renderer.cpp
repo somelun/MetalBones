@@ -163,9 +163,12 @@ void Renderer::draw(MTK::View* view) {
     encoder->setRenderPipelineState(renderPipelineState);
     encoder->setVertexBuffer(vertexBuffer, 0, 0);
     
+    t += 0.016;
+    encoder->setVertexBytes(&t, sizeof(float), 3);
+    
     encoder->drawIndexedPrimitives(
         MTL::PrimitiveType::PrimitiveTypeTriangle,
-        6, MTL::IndexType::IndexTypeUInt16,
+        36, MTL::IndexType::IndexTypeUInt16,
         indexBuffer,
         0, 1
     );

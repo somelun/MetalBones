@@ -30,4 +30,6 @@ private:
     
     MTL::Buffer* vertexBuffer;
     MTL::Buffer* indexBuffer;
+    
+    float t;
 };
